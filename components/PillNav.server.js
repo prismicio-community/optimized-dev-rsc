@@ -1,7 +1,10 @@
 import Link from "next/link";
+
 import { cn } from "../lib/cn";
 
-const PillNavItem = ({ href, isActive, children }) => {
+const PillNavItem = ({ activeRoute, href, children }) => {
+  const isActive = activeRoute === href;
+
   return (
     <li>
       <Link href={href}>
@@ -10,7 +13,7 @@ const PillNavItem = ({ href, isActive, children }) => {
             "relative inline-block rounded-full px-6 py-3 text-center",
             isActive
               ? "bg-gray-100 font-semibold"
-              : "bg-transparent text-gray-400"
+              : "bg-transparent text-black/30"
           )}
         >
           <span className="absolute inset-x-0 flex items-center px-6">
@@ -25,7 +28,7 @@ const PillNavItem = ({ href, isActive, children }) => {
   );
 };
 
-export const PillNav = ({ children }) => {
+const PillNav = ({ children }) => {
   return (
     <nav>
       <ul className="wrap flex items-center gap-2 tracking-tight text-sm">
@@ -36,3 +39,5 @@ export const PillNav = ({ children }) => {
 };
 
 PillNav.Item = PillNavItem;
+
+export default PillNav;
