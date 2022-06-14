@@ -18,7 +18,7 @@ export default function SavedPage({ saved }) {
 }
 
 export const getServerSideProps = async () => {
-  const saved = await savedDB.load();
+  const saved = await savedDB.loadAll();
 
   return {
     props: {
