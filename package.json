@@ -1,5 +1,5 @@
 {
-  "name": "rsc-demo-rss",
+  "name": "optimized-dev-rsc",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,6 +10,7 @@
     "format": "prettier --write ."
   },
   "dependencies": {
+    "cacache": "^16.1.1",
     "dayjs": "^1.11.3",
     "next": "^12.1.7-canary.33",
     "react": "^18.1.0",

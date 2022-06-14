@@ -1,5 +1,33 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useTransition } from "react";
+
 import { cn } from "../lib/cn";
+
+const suspensify = (promise) => {
+  let status = "pending";
+  let result;
+  let suspender = promise.then(
+    (r) => {
+      status = "success";
+      result = r;
+    },
+    (e) => {
+      status = "error";
+      result = e;
+    }
+  );
+
+  return {
+    read() {
+      if (status === "pending") {
+        throw suspender;
+      } else if (status === "error") {
+        throw result;
+      } else if (status === "success") {
+        return result;
+      }
+    },
+  };
+};
 
 const SaveButton = ({
   initialIsSaved,
@@ -14,23 +42,17 @@ const SaveButton = ({
   const ref = useRef(null);
   const [liveIsSaved, setLiveIsSaved] = useState();
   const isSaved = liveIsSaved ?? initialIsSaved;
+  const [isPending, startTransition] = useTransition();
 
-  const toggle = async () => {
-    try {
-      if (ref) {
-        ref.current.disabled = true;
-      }
+  const [x, setX] = useState();
+  if (x) {
+    x.read();
+  }
 
-      if (isSaved) {
-        await unsave();
-      } else {
-        await save();
-      }
-    } finally {
-      if (ref) {
-        ref.current.disabled = false;
-      }
-    }
+  const toggle = () => {
+    startTransition(() => {
+      setX(suspensify(isSaved ? unsave() : save()));
+    });
   };
 
   const save = async () => {
@@ -50,16 +72,14 @@ const SaveButton = ({
       }),
     });
 
+    await new Promise((res) => setTimeout(res, 1000));
+
     if (res.ok) {
       setLiveIsSaved(true);
     }
   };
 
   const unsave = async () => {
-    // if (!window.confirm(`Are you sure you want to unsave "${title}"?`)) {
-    //   return;
-    // }
-
     const res = await fetch("/api/unsave", {
       method: "POST",
       headers: {
@@ -68,16 +88,21 @@ const SaveButton = ({
       body: JSON.stringify({ guid }),
     });
 
+    await new Promise((res) => setTimeout(res, 1000));
+
     if (res.ok) {
       setLiveIsSaved(false);
     }
   };
 
   return (
-    <button ref={ref} onClick={toggle}>
-      <span className={cn("capsize", isSaved && "font-bold text-red-500")}>
-        {isSaved ? "Unsave" : "Save"}
-      </span>
+    <button
+      ref={ref}
+      onClick={toggle}
+      disabled={isPending}
+      className={cn("capsize", isSaved && "font-bold text-rose-500")}
+    >
+      {isSaved ? "Unsave" : "Save"}
     </button>
   );
 };
