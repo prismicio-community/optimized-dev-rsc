@@ -1,27 +1,13 @@
 import * as savedDB from "../lib/savedDB";
 
 import Layout from "../components/Layout.server.js";
-import RSSItem from "../components/RSSItem.server.js";
+import Feed from "../components/Feed.server";
 
 export default function SavedPage({ saved }) {
   return (
     <Layout activeRoute="/saved">
       {saved.length > 0 ? (
-        <ul className="grid gap-12 lg:gap-24">
-          {saved.map((item) => (
-            <RSSItem
-              key={`saved-${item.guid}`}
-              initialIsSaved={true}
-              guid={item.guid}
-              title={item.title}
-              url={item.link}
-              feedTitle={item.feedTitle}
-              feedURL={item.feedURL}
-              publishedAt={item.pubDate}
-              commentsURL={item.comments}
-            />
-          ))}
-        </ul>
+        <Feed items={saved} saved={saved} />
       ) : (
         <p className="italic text-black/40 text-sm capsize">
           There&rsquo;s nothing here! Go save some stuff!

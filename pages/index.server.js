@@ -1,36 +1,28 @@
 import { fetchRSSFeedItems } from "../lib/fetchRSSFeedItems.js";
 import * as savedDB from "../lib/savedDB";
 
-import { feedURLs } from "../config";
-
 import Layout from "../components/Layout.server.js";
-import RSSItem from "../components/RSSItem.server.js";
+import Feed from "../components/Feed.server.js";
 
 export default function IndexPage({ items, saved }) {
   return (
     <Layout activeRoute="/">
-      <ul className="grid gap-12 lg:gap-24">
-        {items.map((item) => (
-          <RSSItem
-            key={item.guid}
-            initialIsSaved={saved.some((row) => row.guid === item.guid)}
-            guid={item.guid}
-            title={item.title}
-            url={item.link}
-            feedTitle={item.feedTitle}
-            feedURL={item.feedURL}
-            publishedAt={item.pubDate}
-            commentsURL={item.comments}
-          />
-        ))}
-      </ul>
+      {items.length > 0 ? (
+        <Feed items={items} saved={saved} />
+      ) : (
+        <p className="italic text-black/40 text-sm capsize">
+          It&rsquo;s quiet here. Too quiet. Open{" "}
+          <code className="rounded bg-black/5 px-1 py-0.5">config.js</code> and
+          add some RSS feeds with content!
+        </p>
+      )}
     </Layout>
   );
 }
 
 export const getServerSideProps = async () => {
   const [items, saved] = await Promise.all([
-    fetchRSSFeedItems(feedURLs),
+    fetchRSSFeedItems(),
     savedDB.load(),
   ]);
 

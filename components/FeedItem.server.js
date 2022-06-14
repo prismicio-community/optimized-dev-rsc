@@ -10,7 +10,7 @@ const RelativeDate = ({ date }) => {
   return dayjs(date).from(dayjs());
 };
 
-const RSSItem = ({
+const FeedItem = ({
   initialIsSaved,
   guid,
   title,
@@ -82,4 +82,4 @@ const RSSItem = ({
   );
 };
 
-export default RSSItem;
+export default FeedItem;

@@ -6,11 +6,9 @@ const Layout = ({ children, activeRoute }) => {
     <div className="px-6 pt-12 pb-28 antialiased font-sans text-base leading-normal lg:px-28 lg:pt-28 lg:pb-60">
       <div className="mx-auto grid max-w-7xl gap-12 lg:gap-28">
         <header className="flex items-center gap-8">
-          <span className="text-4xl">
-            <Link href="/">
-              <a>🐔</a>
-            </Link>
-          </span>
+          <Link href="/">
+            <a className="text-4xl">🐔</a>
+          </Link>
           <PillNav>
             <PillNav.Item activeRoute={activeRoute} href="/">
               All
