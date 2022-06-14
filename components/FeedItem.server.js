@@ -1,6 +1,5 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import { Suspense } from "react";
 
 import SaveButton from "./SaveButton.client";
 
@@ -64,19 +63,17 @@ const FeedItem = ({
             </a>
           </div>
         )}
-        <Suspense fallback="Loading…">
-          <SaveButton
-            key={guid}
-            initialIsSaved={initialIsSaved}
-            guid={guid}
-            title={title}
-            url={url}
-            feedTitle={feedTitle}
-            feedURL={feedURL}
-            publishedAt={publishedAt}
-            commentsURL={commentsURL}
-          />
-        </Suspense>
+        <SaveButton
+          key={guid}
+          initialIsSaved={initialIsSaved}
+          guid={guid}
+          title={title}
+          url={url}
+          feedTitle={feedTitle}
+          feedURL={feedURL}
+          publishedAt={publishedAt}
+          commentsURL={commentsURL}
+        />
       </dl>
     </li>
   );

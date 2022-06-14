@@ -1,4 +1,5 @@
-import { useRef, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
+import PulseLoader from "react-spinners/PulseLoader";
 
 import { cn } from "../lib/cn";
 
@@ -39,19 +40,18 @@ const SaveButton = ({
   publishedAt,
   commentsURL,
 }) => {
-  const ref = useRef(null);
-  const [liveIsSaved, setLiveIsSaved] = useState();
-  const isSaved = liveIsSaved ?? initialIsSaved;
-  const [isPending, startTransition] = useTransition();
+  const [clientSideIsSaved, setClientSideIsSaved] = useState();
+  const isSaved = clientSideIsSaved ?? initialIsSaved;
 
-  const [x, setX] = useState();
-  if (x) {
-    x.read();
+  const [isPending, startTransition] = useTransition();
+  const [networkRequest, setNetworkRequest] = useState();
+  if (networkRequest) {
+    networkRequest.read();
   }
 
   const toggle = () => {
     startTransition(() => {
-      setX(suspensify(isSaved ? unsave() : save()));
+      setNetworkRequest(suspensify(isSaved ? unsave() : save()));
     });
   };
 
@@ -75,7 +75,7 @@ const SaveButton = ({
     await new Promise((res) => setTimeout(res, 1000));
 
     if (res.ok) {
-      setLiveIsSaved(true);
+      setClientSideIsSaved(true);
     }
   };
 
@@ -91,20 +91,26 @@ const SaveButton = ({
     await new Promise((res) => setTimeout(res, 1000));
 
     if (res.ok) {
-      setLiveIsSaved(false);
+      setClientSideIsSaved(false);
     }
   };
 
-  return (
-    <button
-      ref={ref}
-      onClick={toggle}
-      disabled={isPending}
-      className={cn("capsize", isSaved && "font-bold text-rose-500")}
-    >
-      {isSaved ? "Unsave" : "Save"}
-    </button>
-  );
+  if (isPending) {
+    return (
+      <div className="capsize">
+        <PulseLoader color="currentColor" size={4} />
+      </div>
+    );
+  } else {
+    return (
+      <button
+        onClick={toggle}
+        className={cn("capsize", isSaved && "font-bold text-rose-500")}
+      >
+        {isSaved ? "Unsave" : "Save"}
+      </button>
+    );
+  }
 };
 
 export default SaveButton;
