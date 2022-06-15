@@ -1,3 +1,15 @@
+/**
+ * 🐔 "This file contains a component that renders an individual RSS feed item.
+ *     In case you missed it, this file's name ends with `.server.js`. That
+ *     means it will only be rendered on the server. All of our readers on the
+ *     receiving end won't have to download all the JavaScript used in this
+ *     file."
+ *
+ * 🐔 "If it seems like I'm repeating myself, you'll need to get used to it.
+ *     Copy and pasting the same bit of text is easier on my feet. Wait... do I
+ *     type with my feet or my wings? Probably my feet."
+ */
+
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
@@ -5,10 +17,23 @@ import SaveButton from "./SaveButton.client";
 
 dayjs.extend(relativeTime);
 
+/**
+ * Renders a date relative to the current time. For example, "6 hours ago".
+ *
+ * Note: This component only renders on the server since its filename ends with
+ * `.server.js`. Its JavaScript will not be sent to the browser.
+ */
 const RelativeDate = ({ date }) => {
   return dayjs(date).from(dayjs());
 };
 
+/**
+ * Displays an RSS feed item, including its title, feed name, and link to its
+ * article.
+ *
+ * Note: This component only renders on the server since its filename ends with
+ * `.server.js`. Its JavaScript will not be sent to the browser.
+ */
 const FeedItem = ({
   initialIsSaved,
   guid,

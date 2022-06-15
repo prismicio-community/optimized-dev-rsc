@@ -1,3 +1,9 @@
+/**
+ * 🐔 "This file adds some extra HTML to our app's pages. Specifically, it
+ *     loads my favorite font, Inter, and adds the best color, yellow, as the
+ *     app's background. Everything else is boilerplate."
+ */
+
 import { Html, Head, Main, NextScript } from "next/document";
 
 export default function Document() {

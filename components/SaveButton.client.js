@@ -1,8 +1,22 @@
+/**
+ * 🐔 "This file contains a component to toggle saving and unsaving an RSS feed
+ *     item. In case you missed it, this file's name ends with `.client.js`.
+ *     That means it will be rendered on the server AND the client (the
+ *     browser). All of our readers on the receiving end will have to download
+ *     all the JavaScript used in this file, but that means we can do some
+ *     interesting interactive stuff."
+ */
+
 import { useState, useTransition } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 
 import { cn } from "../lib/cn";
 
+/**
+ * A helper function that converts a Promise into a "Suspense"-supported
+ * promise. It uses Suspense's behavioral API to manage pending, success, and
+ * error states of the Promise.
+ */
 const suspensify = (promise) => {
   let status = "pending";
   let result;
@@ -30,6 +44,13 @@ const suspensify = (promise) => {
   };
 };
 
+/**
+ * A button that saves or unsaves an RSS feed item. It toggles between
+ * save/unsave depending on whether the item is already saved.
+ *
+ * Note: This component renders on the server *and* client since its filename
+ * ends with `.client.js`. Its JavaScript *will* be sent to the browser.
+ */
 const SaveButton = ({
   initialIsSaved,
   guid,

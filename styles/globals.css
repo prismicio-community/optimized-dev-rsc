@@ -1,3 +1,9 @@
+/**
+* 🐔 "This file holds the app's styling. Since we're using Tailwind CSS, it
+*     only needs to include the standard Tailwind CSS directives. If you want
+*     to add custom CSS classes, this is the place to do it."
+*/
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
