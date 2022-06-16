@@ -24,10 +24,10 @@ Before getting into the details of the challenge, let’s take a quick tour of w
 
 🐔 Risc, the **R**eact **S**erver **C**hicken (”RSC” — get it? did you get it??), will be your guide throughout the challenge. If you see her throughout the code in your project, she’s there to give you a hint or explain some concepts. You might even see a few 🥚 eggs to give you ideas on how to take the app further.
 
-You’ll start with a standard Next.js app created using `create-next-app` with the following additions:
+You’ll start with a standard Next.js app created using [`create-next-app`](https://nextjs.org/docs/api-reference/create-next-app) with the following additions:
 
-- React Server Components have been enabled using an experimental flag in `next.config.js`.
-- Tailwind CSS has been installed to handle styling.
+- React Server Components have been enabled using [an experimental flag in `next.config.js`](https://nextjs.org/docs/advanced-features/react-18/server-components#enable-react-server-components).
+- [Tailwind CSS](https://tailwindcss.com/) has been installed to handle styling.
 
 A couple of helper functions have been written for you in the `lib` directory, but you’ll need to write the rest (🐔: ”Don’t get your feathers in a bunch; I’ll be there to help!”):
 
