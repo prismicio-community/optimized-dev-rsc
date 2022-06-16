@@ -40,7 +40,7 @@ Additionally, a few React components have been provided as well:
 - `<FeedItem>` - An individual RSS feed item.
 - `<SaveButton>` - Saves and unsaves an RSS feed item. Like `fetchRSSFeedItems()`, this one is mostly empty and awaits your coding skills to complete. 🧙
 
-Finally, a pair of Next.js API routes in the `pages/api` directory have been included to save and unsave RSS feed items to the database. To keep things simple, the “database” is really just a JSON file saved at `db/saved.json`. Maybe you can upgrade this to a real database when you’re done with the challenge. 👀 (🐔: ”Hey! Leaving 🥚 eggs is my job!”)
+Finally, a pair of Next.js API routes in the `pages/api` directory have been included to save and unsave RSS feed items to the database. To keep things simple, the “database” is really just a JSON file saved at `db/saved.json`. Maybe you can upgrade this to a real database when you’re done with the challenge. 👀 (🐔: ”Hey! Laying 🥚 idea eggs is my job!”)
 
 ## Challenge Steps
 
