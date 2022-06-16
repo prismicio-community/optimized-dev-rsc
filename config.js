@@ -1,9 +1,10 @@
 /**
  * 🐔 "Add your list of RSS feed URLs here to fetch in `fetchRSSFeedItems()`.
- *     Me, I like staying up to date on xkcd. You should keep it in the list."
+ *     Me, I like learning jokes and random trivia once a day from LaffGaff.
+ *     Just don't share any 'Why did the chicken cross the road' jokes with
+ *     me."
  */
 export const feedURLs = [
-  "https://xkcd.com/rss.xml", // 🐔 "I'm keep an eye on this line."
-  "https://hnrss.org/frontpage",
-  "https://dev.to/feed/tag/typescript",
+  "https://laffgaff.com/feed/",
+  // 🐔 "You can add your own here if you want."
 ];
