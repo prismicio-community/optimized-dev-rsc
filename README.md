@@ -42,6 +42,18 @@ Additionally, a few React components have been provided as well:
 
 Finally, a pair of Next.js API routes in the `pages/api` directory have been included to save and unsave RSS feed items to the database. To keep things simple, the “database” is really just a JSON file saved at `db/saved.json`. Maybe you can upgrade this to a real database when you’re done with the challenge. 👀 (🐔: ”Hey! Laying 🥚 idea eggs is my job!”)
 
+You can run the app with the following commands:
+
+```sh
+# Install all of its dependencies first.
+npm install
+
+# Then kick start the dev server.
+npm run dev
+
+# You can access the app at http://localhost:3000
+```
+
 ## Challenge Steps
 
 React Server Components cover a wide variety of cases, from rendering components on the server to data fetching management. To learn how everything works together, you and 🐔 Risc will be writing **five missing parts** of the RSS reader app.
@@ -66,7 +78,7 @@ React Server Components cover a wide variety of cases, from rendering components
 
    > 🐔 Risc says…
    >
-   > **Hint**: “I’m back. [Day.js](https://day.js.org/) includes a `relativeTime` plugin that adds a simple `from()` method which outputs the exact format you’ll need. Don’t say I didn’t help ya.”
+   > **Hint**: “I’m back. [Day.js](https://day.js.org/) includes a [`relativeTime` plugin](https://day.js.org/docs/en/plugin/relative-time) that adds a simple [`fromNow()` method](https://day.js.org/docs/en/display/from-now) which outputs the exact format you’ll need. Don’t say I didn’t help ya.”
    >
    > **What to check for**: “Since the component uses a `.server.js` file extension, it will only be rendered on the server. The client will not receive any JavaScript used in the component, nor will it re-run once the app has loaded. This means you can use heavy JavaScript date libraries without worrying about sending too much JavaScript to the browser!”
 
