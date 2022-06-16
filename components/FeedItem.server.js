@@ -24,7 +24,7 @@ dayjs.extend(relativeTime);
  * `.server.js`. Its JavaScript will not be sent to the browser.
  */
 const RelativeDate = ({ date }) => {
-  return dayjs(date).from(dayjs());
+  return dayjs(date).fromNow();
 };
 
 /**
