@@ -78,7 +78,7 @@ React Server Components cover a wide variety of cases, from rendering components
 
    > 🐔 Risc says…
    >
-   > **Hint**: “I’m back. [Day.js](https://day.js.org/) includes a `relativeTime` plugin that adds a simple `from()` method which outputs the exact format you’ll need. Don’t say I didn’t help ya.”
+   > **Hint**: “I’m back. [Day.js](https://day.js.org/) includes a [`relativeTime` plugin](https://day.js.org/docs/en/plugin/relative-time) that adds a simple [`fromNow()` method](https://day.js.org/docs/en/display/from-now) which outputs the exact format you’ll need. Don’t say I didn’t help ya.”
    >
    > **What to check for**: “Since the component uses a `.server.js` file extension, it will only be rendered on the server. The client will not receive any JavaScript used in the component, nor will it re-run once the app has loaded. This means you can use heavy JavaScript date libraries without worrying about sending too much JavaScript to the browser!”
 
