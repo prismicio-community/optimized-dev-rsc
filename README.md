@@ -22,7 +22,7 @@ Before getting into the details of the challenge, let’s take a quick tour of w
 
 ## Tour
 
-🐔 Risc, the React Server Chicken (”RSC” — get it? did you get it??), will be your guide throughout the challenge. If you see her throughout the code in your project, she’s there to give you a hint or explain some concepts. You might even see a few 🥚 eggs to give you ideas on how to take the app further.
+🐔 Risc, the *R*eact *S*erver *C*hicken (”RSC” — get it? did you get it??), will be your guide throughout the challenge. If you see her throughout the code in your project, she’s there to give you a hint or explain some concepts. You might even see a few 🥚 eggs to give you ideas on how to take the app further.
 
 You’ll start with a standard Next.js app created using `create-next-app` with the following additions:
 
