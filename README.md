@@ -1,3 +1,9 @@
+# The Optimized Dev - July 2022
+
+The React Server Components (Alpha) Issue
+
+<img src="https://user-images.githubusercontent.com/8601064/173987473-18b912e5-5c7d-4d72-93fd-936d1707f7ed.png" alt="Screenshot of the RSS feed reader app" />
+
 React Server Components have been teased for what feels like a loooong time, at least in Internet years. The concept was first presented by the React team [back in December 2020](https://reactjs.org/blog/2020/12/21/data-fetching-with-react-server-components.html). Since then, the React team and others in the industry, including Vercel and Shopify, have been refining and implementing the concept.
 
 If you aren’t familiar with React Server Components, or “RSC” for short, they are effectively a way to render React apps on the server _while keeping component code away from the browser_. This is different than the traditional React Server-Side Rendering that we’re familiar with today where all of an app’s JavaScript is sent to and re-executed in the browser. With RSC, you can pick and choose which components are server-only and which require client-side interactivity.
