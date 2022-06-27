@@ -27,8 +27,8 @@ const SaveButton = ({
   publishedAt,
   commentsURL,
 }) => {
-  // 🐔 "Looks like we have `save()` and `unsave()` functions, but no way to
-  //     calling them or managing loading states.
+  // 🐔 "Looks like we have `save()` and `unsave()` functions, but both aren't
+  //     being used yet.
   //
   //    "This is the behavior I think we're aiming for:
   //       - When you click the button, it toggles between saving and unsaving.
