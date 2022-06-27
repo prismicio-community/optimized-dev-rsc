@@ -33,7 +33,7 @@ export default function SavedPage() {
  * above.
  */
 export const getServerSideProps = async () => {
-  // 🐔 "Looks like got we nothin' here to start from. We need to load your saved
+  // 🐔 "Looks like we got nothin' here to start from. We need to load your saved
   //     items and send them to the page as props. *Something* tells me this
   //     was also done on the home page. Hmmmmmmmmm..."
 
