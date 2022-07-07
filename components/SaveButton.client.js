@@ -45,7 +45,7 @@ const SaveButton = ({
   };
 
   const save = async () => {
-    await fetch("/api/save", {
+    const res = await fetch("/api/save", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -71,7 +71,7 @@ const SaveButton = ({
   };
 
   const unsave = async () => {
-    await fetch("/api/unsave", {
+    const res = await fetch("/api/unsave", {
       method: "POST",
       headers: {
         "content-type": "application/json",
