@@ -5,7 +5,7 @@
 //     all the JavaScript used in this file, but that means we can do some
 //     interesting interactive stuff."
 
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 
 import { cn } from "../lib/cn";
@@ -27,8 +27,8 @@ const SaveButton = ({
   publishedAt,
   commentsURL,
 }) => {
-  // 🐔 "Looks like we have `save()` and `unsave()` functions, but no way to
-  //     calling them or managing loading states.
+  // 🐔 "Looks like we have `save()` and `unsave()` functions, but they aren't
+  //     being used anywhere.
   //
   //    "This is the behavior I think we're aiming for:
   //       - When you click the button, it toggles between saving and unsaving.
@@ -37,7 +37,13 @@ const SaveButton = ({
   //         message. Check out React's `useTransition()` hook if you want to try
   //         something new.
 
-  const isSaved = initialIsSaved; // 🐔 "We'll probably need to update this const based on your save/unsave clicks."
+  const [clientSideIsSaved, setClientSideIsSaved] = useState();
+  const isSaved = clientSideIsSaved ?? initialIsSaved;
+
+  const toggle = () => {
+    // 🐔 "This is probably where you'll need to use the `save()` and
+    //     `unsave()` functions."
+  };
 
   const save = async () => {
     await fetch("/api/save", {
@@ -59,6 +65,10 @@ const SaveButton = ({
     // The function is artificially delayed by 1 second so you can detect the
     // network request.
     await new Promise((res) => setTimeout(res, 1000));
+
+    if (res.ok) {
+      setClientSideIsSaved(true);
+    }
   };
 
   const unsave = async () => {
@@ -73,6 +83,10 @@ const SaveButton = ({
     // The function is artificially delayed by 1 second so you can detect the
     // network request.
     await new Promise((res) => setTimeout(res, 1000));
+
+    if (res.ok) {
+      setClientSideIsSaved(false);
+    }
   };
 
   // 🐔 "Good luck. This part might be difficult. I encourage you to build this
@@ -85,7 +99,10 @@ const SaveButton = ({
   //     `suspensify()` function from `lib/suspensify.js`"
 
   return (
-    <button className={cn("capsize", isSaved && "font-bold text-rose-500")}>
+    <button
+      onClick={toggle}
+      className={cn("capsize", isSaved && "font-bold text-rose-500")}
+    >
       {isSaved ? "Unsave" : "Save"}
     </button>
   );
