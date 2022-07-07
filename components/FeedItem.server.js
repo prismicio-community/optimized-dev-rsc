@@ -18,16 +18,6 @@ import SaveButton from "./SaveButton.client";
 dayjs.extend(relativeTime);
 
 /**
- * Renders a date relative to the current time. For example, "6 hours ago".
- *
- * Note: This component only renders on the server since its filename ends with
- * `.server.js`. Its JavaScript will not be sent to the browser.
- */
-const RelativeDate = ({ date }) => {
-  return dayjs(date).fromNow();
-};
-
-/**
  * Displays an RSS feed item, including its title, feed name, and link to its
  * article.
  *
@@ -72,9 +62,7 @@ const FeedItem = ({
         </div>
         <div>
           <dt className="sr-only">Published Date</dt>
-          <dd className="capsize">
-            <RelativeDate date={publishedAt} />
-          </dd>
+          <dd className="capsize">{dayjs(publishedAt).fromNow()}</dd>
         </div>
         {commentsURL && (
           <div>

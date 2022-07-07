@@ -49,10 +49,9 @@ export default function IndexPage({ items, saved }) {
  * page's component above.
  */
 export const getServerSideProps = async () => {
-  const [items, saved] = await Promise.all([
-    fetchRSSFeedItems(),
-    savedDB.loadAll(),
-  ]);
+  const items = await fetchRSSFeedItems();
+
+  const saved = await savedDB.loadAll();
 
   return {
     props: {
