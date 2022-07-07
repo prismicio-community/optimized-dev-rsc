@@ -10,12 +10,7 @@
  *     type with my feet or my wings? Probably my feet."
  */
 
-import dayjs from "dayjs";
-import relativeTime from "dayjs/plugin/relativeTime";
-
 import SaveButton from "./SaveButton.client";
-
-dayjs.extend(relativeTime);
 
 /**
  * Displays an RSS feed item, including its title, feed name, and link to its
@@ -62,7 +57,14 @@ const FeedItem = ({
         </div>
         <div>
           <dt className="sr-only">Published Date</dt>
-          <dd className="capsize">{dayjs(publishedAt).fromNow()}</dd>
+          <dd className="capsize">
+            {/* 🐔 "Can we get a nicer looking date here, pleeease?" */}
+            {publishedAt}
+            {/* 🐔 "This component is only rendered on the server, so feel free
+             *      to use whatever date library you want. Bundle size really
+             *      doesn't matter."
+             */}
+          </dd>
         </div>
         {commentsURL && (
           <div>

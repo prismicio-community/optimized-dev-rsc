@@ -1,48 +1,13 @@
-/**
- * 🐔 "This file contains a component to toggle saving and unsaving an RSS feed
- *     item. In case you missed it, this file's name ends with `.client.js`.
- *     That means it will be rendered on the server AND the client (the
- *     browser). All of our readers on the receiving end will have to download
- *     all the JavaScript used in this file, but that means we can do some
- *     interesting interactive stuff."
- */
+// 🐔 "This file contains a component to toggle saving and unsaving an RSS feed
+//     item. In case you missed it, this file's name ends with `.client.js`.
+//     That means it will be rendered on the server AND the client (the
+//     browser). All of our readers on the receiving end will have to download
+//     all the JavaScript used in this file, but that means we can do some
+//     interesting interactive stuff."
 
-import { useState, useTransition } from "react";
-import PulseLoader from "react-spinners/PulseLoader";
+import { useState } from "react";
 
 import { cn } from "../lib/cn";
-
-/**
- * A helper function that converts a Promise into a "Suspense"-supported
- * promise. It uses Suspense's behavioral API to manage pending, success, and
- * error states of the Promise.
- */
-const suspensify = (promise) => {
-  let status = "pending";
-  let result;
-  let suspender = promise.then(
-    (r) => {
-      status = "success";
-      result = r;
-    },
-    (e) => {
-      status = "error";
-      result = e;
-    }
-  );
-
-  return {
-    read() {
-      if (status === "pending") {
-        throw suspender;
-      } else if (status === "error") {
-        throw result;
-      } else if (status === "success") {
-        return result;
-      }
-    },
-  };
-};
 
 /**
  * A button that saves or unsaves an RSS feed item. It toggles between
@@ -61,19 +26,22 @@ const SaveButton = ({
   publishedAt,
   commentsURL,
 }) => {
+  // 🐔 "Looks like we have `save()` and `unsave()` functions, but they aren't
+  //     being used anywhere.
+  //
+  //    "This is the behavior I think we're aiming for:
+  //       - When you click the button, it toggles between saving and unsaving.
+  //
+  //       - When `save()` or `unsave()` is called, we can display a loading
+  //         message. Check out React's `useTransition()` hook if you want to try
+  //         something new.
+
   const [clientSideIsSaved, setClientSideIsSaved] = useState();
   const isSaved = clientSideIsSaved ?? initialIsSaved;
 
-  const [isPending, startTransition] = useTransition();
-  const [networkRequest, setNetworkRequest] = useState();
-  if (networkRequest) {
-    networkRequest.read();
-  }
-
   const toggle = () => {
-    startTransition(() => {
-      setNetworkRequest(suspensify(isSaved ? unsave() : save()));
-    });
+    // 🐔 "This is probably where you'll need to use the `save()` and
+    //     `unsave()` functions."
   };
 
   const save = async () => {
@@ -93,6 +61,8 @@ const SaveButton = ({
       }),
     });
 
+    // The function is artificially delayed by 1 second so you can detect the
+    // network request.
     await new Promise((res) => setTimeout(res, 1000));
 
     if (res.ok) {
@@ -109,6 +79,8 @@ const SaveButton = ({
       body: JSON.stringify({ guid }),
     });
 
+    // The function is artificially delayed by 1 second so you can detect the
+    // network request.
     await new Promise((res) => setTimeout(res, 1000));
 
     if (res.ok) {
@@ -116,22 +88,23 @@ const SaveButton = ({
     }
   };
 
-  if (isPending) {
-    return (
-      <div className="capsize">
-        <PulseLoader color="currentColor" size={4} />
-      </div>
-    );
-  } else {
-    return (
-      <button
-        onClick={toggle}
-        className={cn("capsize", isSaved && "font-bold text-rose-500")}
-      >
-        {isSaved ? "Unsave" : "Save"}
-      </button>
-    );
-  }
+  // 🐔 "Good luck. This part might be difficult. I encourage you to build this
+  //     using `useTransition()` so you can learn what it is and how it relates to...
+  //
+  //     ...wait for it...
+  //
+  //
+  //     ...Suspense. Speaking of Suspense, you'll probably need to use the
+  //     `suspensify()` function from `lib/suspensify.js`"
+
+  return (
+    <button
+      onClick={toggle}
+      className={cn("capsize", isSaved && "font-bold text-rose-500")}
+    >
+      {isSaved ? "Unsave" : "Save"}
+    </button>
+  );
 };
 
 export default SaveButton;
