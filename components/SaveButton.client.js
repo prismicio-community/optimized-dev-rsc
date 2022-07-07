@@ -6,7 +6,6 @@
 //     interesting interactive stuff."
 
 import { useState } from "react";
-import PulseLoader from "react-spinners/PulseLoader";
 
 import { cn } from "../lib/cn";
 
