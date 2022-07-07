@@ -8,6 +8,12 @@ React Server Components have been teased for what feels like a loooong time, at 
 
 If you aren’t familiar with React Server Components, or “RSC” for short, they are effectively a way to render React apps on the server _while keeping component code away from the browser_. This is different than the traditional React Server-Side Rendering that we’re familiar with today where all of an app’s JavaScript is sent to and re-executed in the browser. With RSC, you can pick and choose which components are server-only and which require client-side interactivity.
 
+React Server Components work great with React Suspense, a React feature that lets you manage loading states within your app. In this challenge, you’ll see how RSC and Suspense work together.
+
+> **Don’t know what Suspense is?**
+>
+> No problem! Check out [our introduction to Suspense](#) to get an understanding of what it is and where you can use it.
+
 Although React Server Components are still in development and not ready for production, you can try them out today thanks to [Next.js’s experimental support](https://nextjs.org/docs/advanced-features/react-18/server-components).
 
 **Disclaimer**: The concepts you’ll learn throughout the challenge will change by the time React Server Components are officially released. Treat this challenge as a way to get familiar with RSC’s ideas, not as a way to learn their exact APIs.
