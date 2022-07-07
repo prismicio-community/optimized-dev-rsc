@@ -10,13 +10,10 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "cacache": "^16.1.1",
-    "dayjs": "^1.11.3",
     "next": "^12.1.7-canary.33",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "react-spinners": "^0.12.0",
-    "rss-parser": "^3.12.0"
+    "react-spinners": "^0.12.0"
   },
   "devDependencies": {
     "@capsizecss/metrics": "^0.2.0",
