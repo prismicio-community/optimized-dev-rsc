@@ -10,7 +10,6 @@
     "format": "prettier --write ."
   },
   "dependencies": {
-    "cacache": "^16.1.1",
     "dayjs": "^1.11.3",
     "next": "^12.1.7-canary.33",
     "react": "^18.1.0",
