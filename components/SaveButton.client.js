@@ -11,38 +11,7 @@ import { useState, useTransition } from "react";
 import PulseLoader from "react-spinners/PulseLoader";
 
 import { cn } from "../lib/cn";
-
-/**
- * A helper function that converts a Promise into a "Suspense"-supported
- * promise. It uses Suspense's behavioral API to manage pending, success, and
- * error states of the Promise.
- */
-const suspensify = (promise) => {
-  let status = "pending";
-  let result;
-  let suspender = promise.then(
-    (r) => {
-      status = "success";
-      result = r;
-    },
-    (e) => {
-      status = "error";
-      result = e;
-    }
-  );
-
-  return {
-    read() {
-      if (status === "pending") {
-        throw suspender;
-      } else if (status === "error") {
-        throw result;
-      } else if (status === "success") {
-        return result;
-      }
-    },
-  };
-};
+import { suspensify } from "../lib/suspensify";
 
 /**
  * A button that saves or unsaves an RSS feed item. It toggles between
